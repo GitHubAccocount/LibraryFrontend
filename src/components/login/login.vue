@@ -4,50 +4,36 @@
       class="bg-white dark:bg-gray-400 shadow-md rounded-lg px-8 py-6 max-w-md"
     >
       <h1 class="text-2xl font-bold text-center mb-4 text-white">Biblioteka</h1>
-      <form action="#">
+      <form @submit.prevent="submit" action="#">
         <div class="mb-4">
-          <label for="email" class="block text-sm font-medium text-white mb-2"
-            >Adres Email</label
-          >
-          <input
-            type="email"
+          <inputLabel value="Adres Email" for="email"></inputLabel>
+          <inputGlobal
+            v-model="form.email"
+            name="email"
             id="email"
-            class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            type="email"
             placeholder="przykład@email.com"
-            required
-          />
+          ></inputGlobal>
         </div>
+
         <div class="mb-4">
-          <label
-            for="password"
-            class="block text-sm font-medium text-white mb-2"
-            >Hasło</label
-          >
-          <input
-            type="password"
+          <inputLabel value="Hasło" for="password"></inputLabel>
+          <inputGlobal
+            v-model="form.password"
+            name="password"
             id="password"
-            class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            type="password"
             placeholder="Wprowadź hasło"
-            required
-          />
+          ></inputGlobal>
+
           <a
             href="#"
             class="text-xs text-gray-200 hover:text-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >Zapomniałeś hasła?</a
           >
         </div>
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center">
-            <input
-              type="checkbox"
-              id="remember"
-              class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 focus:outline-none"
-              checked
-            />
-            <label for="remember" class="ml-2 block text-sm text-white"
-              >Zapamiętaj mnie</label
-            >
-          </div>
+
+        <div class="flex items-center justify-end mb-4">
           <a
             href="#"
             class="text-xs text-slate-600 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
@@ -65,4 +51,17 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import inputGlobal from "../shared/inputGlobal.vue";
+import inputLabel from "../shared/inputLabel.vue";
+import { ref } from "vue";
+
+const form = ref({
+  email: "",
+  password: "",
+});
+
+const submit = () => {
+  console.log(form.value);
+};
+</script>
